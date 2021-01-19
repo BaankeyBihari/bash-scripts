@@ -40,7 +40,7 @@ fi
 
 # SCRIPT ALIASES BEGIN
 alias ii="/home/sudhan/bin/scripts/ii.sh"
-alias test="/home/sudhan/bin/scripts/test.sh"
+alias bsManager="/home/sudhan/bin/scripts/bsManager.sh"
 alias repeats="/home/sudhan/bin/scripts/repeats.sh"
 alias iq="/home/sudhan/bin/scripts/iq.sh"
 alias pp="/home/sudhan/bin/scripts/pp.sh"
