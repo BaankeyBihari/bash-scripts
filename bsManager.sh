@@ -22,7 +22,10 @@ while getopts ":lsacpm:" option; do
     case "${option}" in
     l)
         # get latest from repository
-        (cd ${SCRIPTSPATH} && git pull --rebase && cp -rf {bash/.[^.]*,bash/*} ~/)
+        files=$(cd ${SCRIPTSPATH} && ls .[^.]*)
+        [ ! -z "${files}" ] && (cd ${SCRIPTSPATH} && git pull --rebase && cp -rf bash/.[^.]* ~/)
+        files=$(cd ${SCRIPTSPATH} && ls bash/)
+        [ ! -z "${files}" ] && (cd ${SCRIPTSPATH} && git pull --rebase && cp -rf bash/* ~/)
         ;;
     s)
         # saves current config to scripts folder
