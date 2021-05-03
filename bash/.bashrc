@@ -13,7 +13,7 @@ fi
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 ALIASES="$HOME/.bash_aliases"
-SCRIPTS="$HOME/bin/scripts"
+SCRIPTS="$HOME/bin/bash-scripts"
 
 # Remove my existing scripts as aliases
 if [ -f "${ALIASES}" ]; then
