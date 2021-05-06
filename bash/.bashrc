@@ -13,6 +13,7 @@ fi
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 ALIASES="$HOME/.bash_aliases"
+EXTRAS="$HOME/.bash_extras"
 SCRIPTS="$HOME/bin/bash-scripts"
 
 # Remove my existing scripts as aliases
@@ -43,6 +44,10 @@ fi
 
 if [ -f "${ALIASES}" ]; then
     . "${ALIASES}"
+fi
+
+if [ -f "${EXTRAS}" ]; then
+    . "${EXTRAS}"
 fi
 
 # If not running interactively, don't do anything

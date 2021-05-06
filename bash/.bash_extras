@@ -1,0 +1,55 @@
+# Following aliases will be available only in interactive mode
+if [[ $- == *"i"* ]]; then
+    :
+fi
+
+# Following aliases are available even in non interactive shells
+
+# JAVA Setup
+if [ -d "/usr/lib/jvm/java-11-openjdk-amd64" ]; then
+    export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+    export PATH=$PATH:$JAVA_HOME/bin
+fi
+
+# Android Setup
+if [ -d "$HOME/Android/Sdk" ]; then
+    export ANDROID_HOME=$HOME/Android/Sdk
+    export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
+    export PATH=$PATH:$ANDROID_HOME/platform-tools
+fi
+
+# Flutter Setup
+if [ -d "$HOME/Flutter/Sdk" ]; then
+    export FLUTTER_ROOT=$HOME/Flutter/Sdk
+    export PATH=$FLUTTER_ROOT/bin:$PATH
+fi
+
+# Homebrew Setup
+if [ -d "/home/linuxbrew/.linuxbrew" ]; then
+    export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew";
+    export HOMEBREW_CELLAR="/home/linuxbrew/.linuxbrew/Cellar";
+    export HOMEBREW_REPOSITORY="/home/linuxbrew/.linuxbrew/Homebrew";
+    export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin${PATH+:$PATH}";
+    export MANPATH="/home/linuxbrew/.linuxbrew/share/man${MANPATH+:$MANPATH}:";
+    export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:${INFOPATH:-}";
+
+    # Homebrew installed binaries
+
+    ## NVM Setup
+    install_dir=$(brew --prefix nvm)
+    if [ -d "${install_dir}" ]; then
+        export NVM_DIR="$HOME/.nvm"
+        [ -s "$(brew --prefix nvm)/nvm.sh" ] && . "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"  # This loads nvm
+        [ -s "$(brew --prefix nvm)/etc/bash_completion.d/nvm" ] && . "$(brew --prefix nvm)/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+    fi
+
+    ## Golang Setup
+    install_dir=$(brew --prefix go)
+    if [ -d "${install_dir}" ]; then
+        export GOPATH="${HOME}/.go"
+        export GOROOT="$(brew --prefix golang)/libexec"
+        export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+        test -d "${GOPATH}" || mkdir "${GOPATH}"
+        test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
+    fi
+fi
